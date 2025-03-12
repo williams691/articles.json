@@ -6,5 +6,9 @@
   {
     "title": "Judul Artikel 2",
     "content": "Ini isi artikel kedua."
+  },
+  {
+    "title": "Artikel Auto-Inject Bot",
+    "content": "Artikel ini otomatis diupdate lewat bot Node.js."
   }
 ]
