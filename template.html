@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Daftar Artikel</title>
+</head>
+<body>
+    <header>
+        <h1>Daftar Artikel</h1>
+    </header>
+    <main>
+        <!-- Kontainer untuk daftar artikel -->
+        <div id="article-container">
+            <p>Memuat artikel...</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Scraper Anda</p>
+    </footer>
+
+    <script>
+        // Ambil elemen kontainer
+        const container = document.getElementById('article-container');
+
+        // Ambil daftar file artikel dari server
+        fetch('/artikel-list')
+            .then(response => response.json())
+            .then(files => {
+                container.innerHTML = ''; // Kosongkan kontainer sebelum menambahkan elemen
+                files.forEach(file => {
+                    // Buat elemen untuk setiap artikel
+                    const articleLink = document.createElement('a');
+                    articleLink.href = `artikel/${file}`;
+                    articleLink.textContent = file;
+                    articleLink.style.display = 'block'; // Tampilkan setiap artikel di baris baru
+                    container.appendChild(articleLink);
+                });
+            })
+            .catch(error => {
+                container.innerHTML = '<p>Gagal memuat artikel.</p>';
+                console.error('Gagal memuat artikel:', error);
+            });
+    </script>
+</body>
+</html>
